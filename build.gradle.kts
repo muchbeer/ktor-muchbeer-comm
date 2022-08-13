@@ -21,6 +21,9 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
+tasks {
+    create("stage").dependsOn("installDist")
+}
 repositories {
     mavenCentral()
 }
