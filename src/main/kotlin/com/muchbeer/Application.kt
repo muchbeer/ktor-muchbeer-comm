@@ -2,7 +2,7 @@ package com.muchbeer
 
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import com.muchbeer.plugins.*
+import com.muchbeer.routes.*
 
 fun main() {
     embeddedServer(Netty, port = 8085, host = "0.0.0.0") {
