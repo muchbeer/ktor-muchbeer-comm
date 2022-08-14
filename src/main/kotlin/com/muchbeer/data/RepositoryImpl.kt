@@ -68,12 +68,13 @@ class RepositoryImpl : Repository {
             } get(SenderIDTable.senderName)
         }
     }
-    override suspend fun retrieveAllUsers(): List<User> {
-    return  dbQuery {
-            UserTable.selectAll().map { userRow->
-                mapToUserModel(userRow)
-            }
+
+    override suspend fun retrieveAllUsers(): DataResponse<Any> {
+    return DataResponse.SuccessResponse( data= dbQuery {
+        UserTable.selectAll().map { userRow->
+            mapToUserModel(userRow)
         }
+    }, message = "Success")
     }
     override suspend fun retrieveAllSMSByEmail(email: String): List<SMSRecipient> {
       return  dbQuery {

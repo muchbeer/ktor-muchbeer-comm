@@ -9,7 +9,7 @@ interface Repository {
     suspend fun insertAcctBalance(mAcctBalance : AccountBalance) : String
 
     suspend fun insertSenderID(mSenderID: SenderID) : String
-    suspend fun retrieveAllUsers() : List<User>
+    suspend fun retrieveAllUsers() : DataResponse<Any>
     suspend fun retrieveAllSMSByEmail(email : String) : List<SMSRecipient>
     suspend fun retrieveAllAirtimeByEmail(email: String) : List<Airtime>
     suspend fun retrieveAllAcctBalance() : List<AccountBalance>

@@ -38,14 +38,18 @@ import org.jetbrains.exposed.sql.transactions.transaction
 object DatabaseFactory {
 
     fun init(){
-        Database.connect(hikari())
-        transaction {
-            SchemaUtils.create(UserTable)
+        synchronized(this) {
+            val hikari2 = DatabaseConnect.getDataSource()
+            Database.connect(hikari2)
+            transaction {
+                SchemaUtils.create(UserTable)
+            }
         }
+
     }
 
 
-    fun hikari(): HikariDataSource {
+  @Synchronized   fun hikari(): HikariDataSource {
         val config = HikariConfig()
         config.driverClassName = System.getenv("JDBC_DRIVER") // 1
         config.jdbcUrl = System.getenv("DATABASE_URL_TAP") // 2

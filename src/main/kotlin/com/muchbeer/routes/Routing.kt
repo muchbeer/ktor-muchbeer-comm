@@ -26,6 +26,7 @@ fun Application.configureRouting() {
 
         get("/listusers") {
             val users = repository.retrieveAllUsers()
+
             call.respond(status = HttpStatusCode.OK, users)
         }
     }
